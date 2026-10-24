@@ -1,6 +1,31 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "github": {
-    "autoJobCancelation": true
-  }
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "parcel"
+    },
+    "docs": {
+      "root": "apps/docs",
+      "framework": "nextjs"
+    },
+    "storybook": {
+      "root": "packages/storybook",
+      "framework": "vite"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/docs/(.*)",
+      "destination": {
+        "service": "docs"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "app"
+      }
+    }
+  ]
 }
